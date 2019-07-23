@@ -5,15 +5,18 @@ set(CMAKE_BUILD_TYPE Release)
 project(slua)
 
 set(EXT_SRC_ROOT ./)
-set(LUA_INC_PATH ${EXT_SRC_ROOT}/lua-5.1.5/src)
-set(LUA_SRC_PATH ${EXT_SRC_ROOT}/lua-5.1.5/src)
+set(LUA_INC_PATH ${EXT_SRC_ROOT}/lua-5.3.5/src)
+set(LUA_SRC_PATH ${EXT_SRC_ROOT}/lua-5.3.5/src)
 set(SLUA_SRC_PATH ${EXT_SRC_ROOT}/slua.c)
 
 set(LUA_SRC_FILES 
     ${LUA_SRC_PATH}/lapi.c
     ${LUA_SRC_PATH}/lauxlib.c
     ${LUA_SRC_PATH}/lbaselib.c
+    ${LUA_SRC_PATH}/lbitlib.c
     ${LUA_SRC_PATH}/lcode.c
+    ${LUA_SRC_PATH}/lcorolib.c
+    ${LUA_SRC_PATH}/lctype.c
     ${LUA_SRC_PATH}/ldblib.c
     ${LUA_SRC_PATH}/ldebug.c
     ${LUA_SRC_PATH}/ldo.c
@@ -37,6 +40,7 @@ set(LUA_SRC_FILES
     ${LUA_SRC_PATH}/ltablib.c
     ${LUA_SRC_PATH}/ltm.c
     ${LUA_SRC_PATH}/lundump.c
+    ${LUA_SRC_PATH}/lutf8lib.c
     ${LUA_SRC_PATH}/lvm.c
     ${LUA_SRC_PATH}/lzio.c
     ${SLUA_SRC_PATH}
