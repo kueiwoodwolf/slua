@@ -3,13 +3,13 @@
 #     exit 1
 # fi
 
-COMMON_FLAGS="-DANDROID_PLATFORM=android-16 \
+COMMON_FLAGS="-DANDROID_PLATFORM=android-19 \
 -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=. \
 -DCMAKE_BUILD_TYPE=Release \
 -DANDROID_NDK=/Users/hjs/Library/Android/sdk/ndk-bundle \
 -DCMAKE_CXX_FLAGS= \
 -DCMAKE_SYSTEM_NAME=Android \
--DCMAKE_SYSTEM_VERSION=16 \
+-DCMAKE_SYSTEM_VERSION=19 \
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 -DCMAKE_ANDROID_NDK=/Users/hjs/Library/Android/sdk/ndk-bundle \
 -DCMAKE_TOOLCHAIN_FILE=/Users/hjs/Library/Android/sdk/ndk-bundle/build/cmake/android.toolchain.cmake \
@@ -43,4 +43,4 @@ mkdir -p build_android_x86_64 && cd build_android_x86_64
 cmake -DANDROID_ABI=x86_64 -DCMAKE_ANDROID_ARCH_ABI=x86_64 $COMMON_FLAGS ..
 cd ..
 cmake --build build_android_x86_64 --config Release
-cp build_android_x86/libslua.so ../Assets/Plugins/Android/libs/x86_64/libslua.so
+cp build_android_x86_64/libslua.so ../Assets/Plugins/Android/libs/x86_64/libslua.so
