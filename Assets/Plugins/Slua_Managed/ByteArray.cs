@@ -120,17 +120,14 @@ namespace SLua
 
 		public void Read (ref byte[] arr)
 		{        
-			for (int i = 0; i < arr.Length; ++i) {
+			for (int i = 0; i < arr.Length && pos_ < data_.Length; ++i) {
 				arr [i] = data_ [pos_++];
 			}
 		}
 
 		public sbyte ReadSByte ()
 		{
-			if (data_ [pos_] > 127)
-				return (sbyte)(data_ [pos_++] - 256);
-			else
-				return (sbyte)(data_ [pos_++]);
+			return (sbyte)(data_ [pos_++]);
 		}
 
 		public short ReadShort ()
@@ -205,7 +202,7 @@ namespace SLua
 		public void WriteInt (int v)
 		{
 			ReAlloc (ref data_, pos_, 4);
-			BytesHelper.MoveToBytes (data_, pos_, v);
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
 			pos_ += 4;
 		}
 		
@@ -232,7 +229,7 @@ namespace SLua
 		public void WriteUInt (uint v)
 		{
 			ReAlloc (ref data_, pos_, 4);
-			BytesHelper.MoveToBytes (data_, pos_, v);
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
 			pos_ += 4;
 		}
 
@@ -272,9 +269,7 @@ namespace SLua
 		
 		public void WriteSByte (sbyte v)
 		{
-			ReAlloc (ref data_, pos_, 1);
-			BytesHelper.MoveToBytes (data_, pos_, v);
-			pos_++;
+			WriteByte((byte)(v));
 		}
 		
 		public void Write (short v)
@@ -291,15 +286,15 @@ namespace SLua
 		public void WriteUShort (ushort v)
 		{
 			ReAlloc (ref data_, pos_, 2);
-			BytesHelper.MoveToBytes (data_, pos_, v);
-			pos_+=2;
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
+			pos_ +=2;
 		}
 
 		public void WriteShort (short v)
 		{
 			ReAlloc (ref data_, pos_, 2);
-			BytesHelper.MoveToBytes (data_, pos_, v);
-			pos_+=2;
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
+			pos_ +=2;
 		}
 
 		public void Write (float v)
@@ -310,7 +305,7 @@ namespace SLua
 		public void WriteFloat (float v)
 		{
 			ReAlloc (ref data_, pos_, 4);
-			BytesHelper.MoveToBytes (data_, pos_, v);
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
 			pos_ += 4;
 		}
 
@@ -322,7 +317,7 @@ namespace SLua
 		public void WriteNum (double v)
 		{
 			ReAlloc (ref data_, pos_, 8);
-			BytesHelper.MoveToBytes (data_, pos_, v);
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
 			pos_ += 8;
 		}
 
@@ -348,7 +343,8 @@ namespace SLua
 
 		public void WriteInt64 (Int64 v)
 		{
-			BytesHelper.MoveToBytes (data_, pos_, v);
+			ReAlloc(ref data_, pos_, 8);
+			BitConverter.GetBytes(v).CopyTo(data_, pos_);
 			pos_ += 8;
 		}
 

@@ -726,6 +726,9 @@ namespace SLua
             "AnimatorControllerParameter.name",
             "Input.IsJoystickPreconfigured",
             "Resources.LoadAssetAtPath",
+            // unity2019?
+            "ScriptableRenderContext.EmitWorldGeometryForSceneView",
+            "RenderPipelineAsset.terrainBrushPassIndex",
 #if UNITY_4_6
 			"Motion.ValidateIfRetargetable",
 			"Motion.averageDuration",
