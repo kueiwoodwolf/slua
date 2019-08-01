@@ -84,7 +84,25 @@ namespace SLua
 			return true;
 		}
 
-		static public bool checkType(IntPtr l, int p, out LayerMask lm)
+        static public bool checkType(IntPtr l, int p, out Rect v)
+        {
+            float x, y, width, height;
+            if (LuaDLL.luaS_checkRect(l, p, out x, out y, out width, out height) != 0)
+                throw new Exception(string.Format("Invalid Rect argument at {0}", p));
+            v = new Rect(x, y, width, height);
+            return true;
+        }
+
+        static public bool checkType(IntPtr l, int p, out Bounds v)
+        {
+            float cx, cy, cz, ex, ey, ez;
+            if (LuaDLL.luaS_checkBounds(l, p, out cx, out cy, out cz, out ex, out ey, out ez) != 0)
+                throw new Exception(string.Format("Invalid Bounds argument at {0}", p));
+            v = new Bounds(new Vector3(cx, cy, cz), new Vector3(ex, ey, ez));
+            return true;
+        }
+
+        static public bool checkType(IntPtr l, int p, out LayerMask lm)
 		{
 			int v;
 			checkType(l, p, out v);
@@ -166,6 +184,17 @@ namespace SLua
 		public static void pushValue(IntPtr l, Color32 c32) {
 			pushObject(l, c32); 
 		}
-	}
+
+        public static void pushValue(IntPtr l, Bounds b)
+        {
+            LuaDLL.luaS_pushBounds(l, b.center.x, b.center.y, b.center.z, b.extents.x, b.extents.y, b.extents.z);
+        }
+
+        public static void pushValue(IntPtr l, Rect rect)
+        {
+            LuaDLL.luaS_pushRect(l, rect.x, rect.y, rect.width, rect.height);
+        }
+
+    }
 }
 #endif

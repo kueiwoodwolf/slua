@@ -1718,6 +1718,8 @@ return dumpstack
             regPushVar(typeof(UnityEngine.Vector4), (IntPtr L, object o) => { LuaObject.pushValue(L, (UnityEngine.Vector4)o); });
             regPushVar(typeof(UnityEngine.Quaternion), (IntPtr L, object o) => { LuaObject.pushValue(L, (UnityEngine.Quaternion)o); });
             regPushVar(typeof(UnityEngine.Color), (IntPtr L, object o) => { LuaObject.pushValue(L, (UnityEngine.Color)o); });
+            regPushVar(typeof(UnityEngine.Bounds), (IntPtr L, object o) => { LuaObject.pushValue(L, (UnityEngine.Bounds)o); });
+            regPushVar(typeof(UnityEngine.Rect), (IntPtr L, object o) => { LuaObject.pushValue(L, (UnityEngine.Rect)o); });
 #endif
         }
 

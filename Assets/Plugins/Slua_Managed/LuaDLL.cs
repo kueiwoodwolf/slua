@@ -704,6 +704,12 @@ namespace SLua
         public static extern int luaS_checkColor(IntPtr l, int p, out float x, out float y, out float z, out float w);
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int luaS_checkRect(IntPtr l, int p, out float x, out float y, out float width, out float height);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int luaS_checkBounds(IntPtr l, int p, out float c_x, out float c_y, out float c_z, out float e_x, out float e_y, out float e_z);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern void luaS_pushVector2(IntPtr l, float x, float y);
 
 
@@ -719,7 +725,22 @@ namespace SLua
         public static extern void luaS_pushColor(IntPtr l, float x, float y, float z, float w);
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void luaS_pushBounds(IntPtr l, float cx, float cy, float cz, float ex, float ey, float ez);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void luaS_pushRect(IntPtr l, float x, float y, float width, float height);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern void luaS_setDataVec(IntPtr l, int p, float x, float y, float z, float w);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void luaS_setColor(IntPtr l, int p, float r, float g, float b, float a);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void luaS_setRect(IntPtr l, int p, float x, float y, float width, float height);
+
+        [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void luaS_setBounds(IntPtr l, int p, float c_x, float c_y, float c_z, float e_x, float e_y, float e_z);
 
         [DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)]
         public static extern int luaS_checkluatype(IntPtr l, int p, string t);
