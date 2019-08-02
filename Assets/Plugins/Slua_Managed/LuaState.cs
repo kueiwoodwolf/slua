@@ -812,7 +812,7 @@ end
             // Dump only 3 stacks, or it will return null (I don't know why)
             string dumpstackfunc = @"
 local dumpstack=function()
-  function vars(f)
+  local function vars(f)
     local dump = """"
     local func = debug.getinfo(f, ""f"").func
     local i = 1
