@@ -687,7 +687,7 @@ namespace SLua
                 case LuaTypes.LUA_TNUMBER:
 #if LUA_5_3
                     if (LuaDLL.lua_isinteger(l, p) > 0)
-                        return (t.IsPrimitive && t != typeof(float) && t != typeof(double)) || t.IsEnum;
+                        return (t.IsPrimitive && t != typeof(Boolean) && t != typeof(char)) || t.IsEnum;
                     else
                         return t == typeof(float) || t == typeof(double);
 #else
