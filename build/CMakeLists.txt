@@ -72,6 +72,8 @@ set (LUA_SOCKET_SRC_FILES
     ${LUA_SOCKET_SRC_PATH}/auxiliar.h
     ${LUA_SOCKET_SRC_PATH}/buffer.c
     ${LUA_SOCKET_SRC_PATH}/buffer.h
+    ${LUA_SOCKET_SRC_PATH}/compat.c
+    ${LUA_SOCKET_SRC_PATH}/compat.h
     ${LUA_SOCKET_SRC_PATH}/except.c
     ${LUA_SOCKET_SRC_PATH}/except.h
     ${LUA_SOCKET_SRC_PATH}/inet.c
@@ -80,9 +82,13 @@ set (LUA_SOCKET_SRC_FILES
     ${LUA_SOCKET_SRC_PATH}/io.h
     ${LUA_SOCKET_SRC_PATH}/luasocket.c
     ${LUA_SOCKET_SRC_PATH}/luasocket.h
+    ${LUA_SOCKET_SRC_PATH}/mime.c
+    ${LUA_SOCKET_SRC_PATH}/mime.h
     ${LUA_SOCKET_SRC_PATH}/options.c
     ${LUA_SOCKET_SRC_PATH}/options.h
+    ${LUA_SOCKET_SRC_PATH}/pierror.h
     ${LUA_SOCKET_SRC_PATH}/select.c
+    ${LUA_SOCKET_SRC_PATH}/select.h
     ${LUA_SOCKET_SRC_PATH}/socket.h
     ${LUA_SOCKET_SRC_PATH}/tcp.c
     ${LUA_SOCKET_SRC_PATH}/tcp.h
@@ -90,14 +96,39 @@ set (LUA_SOCKET_SRC_FILES
     ${LUA_SOCKET_SRC_PATH}/timeout.h
     ${LUA_SOCKET_SRC_PATH}/udp.c
     ${LUA_SOCKET_SRC_PATH}/udp.h
-    ${LUA_SOCKET_SRC_PATH}/compat.c
-    ${LUA_SOCKET_SRC_PATH}/compat.h
     ${LUA_SOCKET_SRC_SOCKET_FILES}
 )
 #end lua socket
 
-set(THIRDPART_INC_PATH ${THIRDPART_INC_PATH} ${LUA_SOCKET_INC_PATH})
-set(THIRDPART_SRC_FILES ${THIRDPART_SRC_FILES} ${LUA_SOCKET_SRC_FILES})
+#begin lpeg
+#set(LUA_LPEG_INC_PATH ${EXT_SRC_ROOT}/clib/lpeg)
+#set(LUA_LPEG_SRC_FILES
+#    ${EXT_SRC_ROOT}/clib/lpeg/lpcap.c
+#    ${EXT_SRC_ROOT}/clib/lpeg/lpcode.c
+#    ${EXT_SRC_ROOT}/clib/lpeg/lpprint.c
+#    ${EXT_SRC_ROOT}/clib/lpeg/lptree.c
+#    ${EXT_SRC_ROOT}/clib/lpeg/lpvm.c
+#)
+#end lpeg
+
+#begin sproto
+set(LUA_SPROTO_INC_PATH ${EXT_SRC_ROOT}/clib/sproto)
+set(LUA_SPROTO_SRC_FILES
+    ${EXT_SRC_ROOT}/clib/sproto/sproto.c
+    ${EXT_SRC_ROOT}/clib/sproto/lsproto.c
+)
+#end sproto
+
+set(THIRDPART_INC_PATH
+    ${THIRDPART_INC_PATH}
+    ${LUA_SOCKET_INC_PATH}
+    ${LUA_SPROTO_INC_PATH}
+)
+set(THIRDPART_SRC_FILES
+    ${THIRDPART_SRC_FILES}
+    ${LUA_SOCKET_SRC_FILES}
+    ${LUA_SPROTO_SRC_FILES}
+)
 #end third-party
 
 include_directories(

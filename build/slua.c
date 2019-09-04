@@ -39,6 +39,10 @@
 #include <string.h>
 
 #include "luasocket.h"
+#include "mime.h"
+
+extern int luaopen_sproto_core(lua_State *L);
+
 
 // #define luajit_c
 
@@ -52,6 +56,9 @@
 
 static const luaL_Reg s_lib_preload[] = {
 	{ "socket.core", luaopen_socket_core },
+	{ "mime.core", luaopen_mime_core },
+	// { "lpeg", luaopen_lpeg },
+	{ "sproto.core", luaopen_sproto_core },
 	// { "pb",    luaopen_pb }, // any 3rd lualibs added here
 	{ NULL, NULL }
 };
